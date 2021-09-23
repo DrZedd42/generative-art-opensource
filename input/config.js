@@ -126,18 +126,20 @@ const baseImageUri = "https://hashlips/nft";
 // id for edition to start from
 const startEditionFrom = 1;
 // amount of NFTs to generate in edition
-const editionSize = 10;
+
+const editionSize = 20;
+const Rarecount = Math.floor(editionSize * .5);
+const SRarecount = Math.floor(editionSize * .05);
 // prefix to add to edition dna ids (to distinguish dna counts from different generation processes for the same collection)
 const editionDnaPrefix = 0
 
 // create required weights
 // for each weight, call 'addRarity' with the id and from which to which element this rarity should be applied
 let rarityWeights = [
-  addRarity('super_rare', 1, 1),
-  addRarity('rare', 2, 5),
-  addRarity('original', 5, 10)
+  addRarity('super_rare', startEditionFrom, SRarecount),
+  addRarity('rare', SRarecount, Rarecount),
+  addRarity('original', Rarecount, editionSize)
 ];
-
 // create required layers
 // for each layer, call 'addLayer' with the id and optionally the positioning and size
 // the id would be the name of the folder in your input directory, e.g. 'ball' for ./input/ball
